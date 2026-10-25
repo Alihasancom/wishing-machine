@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17102b">
+  <title>Wishlight — Create a birthday surprise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="./index.html" aria-label="Wishlight home"><span class="brand-mark">✦</span> wishlight</a>
+    <span class="top-note">Little moments. Lasting memories.</span>
+  </header>
+
+  <main class="shell">
+    <section id="creatorView" class="creator-view">
+      <div class="hero">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> A little magic, made by you</div>
+        <h1>Make their birthday<br><em>feel unforgettable.</em></h1>
+        <p class="hero-copy">Turn your own words, favorite memories, and heartfelt blessings into a beautiful surprise they can open anywhere.</p>
+        <div class="hero-pills"><span>♡ Your words</span><span>✧ Their memories</span><span>↗ One special link</span></div>
+      </div>
+
+      <form id="wishForm" class="editor-card">
+        <div class="card-heading"><div><span class="step-label">YOUR SURPRISE</span><h2>Create a birthday wish</h2></div><span class="live-tag"><span></span> Personal & private-ish</span></div>
+        <div class="form-grid">
+          <label class="field"><span>Birthday person's name *</span><input id="recipient" maxlength="70" required placeholder="e.g. Ayesha"></label>
+          <label class="field"><span>Your name</span><input id="sender" maxlength="70" placeholder="e.g. Alihasan"></label>
+          <label class="field"><span>Your relationship</span><select id="relationship"><option>Best friend</option><option>Friend</option><option>Partner</option><option>Brother or sister</option><option>Family member</option><option>Someone special</option><option>Other</option></select></label>
+          <label class="field"><span>Choose a mood</span><select id="theme"><option value="dreamy">Romantic & Dreamy</option><option value="gold">Midnight Gold</option><option value="garden">Secret Garden</option><option value="galaxy">Midnight Galaxy</option></select></label>
+        </div>
+        <label class="field"><span>Your birthday message *</span><textarea id="message" required maxlength="5000" rows="5" placeholder="Write what you truly want them to know…"></textarea><small class="field-help">Make it yours. There is no perfect way to say something from the heart.</small></label>
+        <label class="field"><span>Blessings & wishes <small>(optional)</small></span><textarea id="blessings" maxlength="2500" rows="3" placeholder="May your days be full of peace, joy, good health and beautiful surprises…"></textarea></label>
+        <label class="field"><span>A secret final letter <small>(optional)</small></span><textarea id="letter" maxlength="2500" rows="3" placeholder="One last thing I want you to remember…"></textarea></label>
+
+        <div class="upload-section">
+          <div class="section-title"><span class="section-icon">✧</span><div><h3>Add your memories</h3><p>Photos, a short video, or a song to make it feel personal.</p></div></div>
+          <label class="upload-drop" for="photos"><span class="upload-symbol">＋</span><span><strong>Add photos</strong><small>Up to 6 images · 5 MB each</small></span><span class="upload-action">Choose files</span></label>
+          <input id="photos" type="file" accept="image/*" multiple hidden>
+          <div id="photoNames" class="file-list"></div>
+          <label class="upload-drop" for="video"><span class="upload-symbol">▷</span><span><strong>Add a memory video</strong><small>Optional · up to 35 MB</small></span><span class="upload-action">Choose video</span></label>
+          <input id="video" type="file" accept="video/mp4,video/webm,video/quicktime" hidden>
+          <div id="videoName" class="file-list"></div>
+          <label class="upload-drop" for="music"><span class="upload-symbol">♫</span><span><strong>Add background music</strong><small>Optional · up to 12 MB · use music you have rights to share</small></span><span class="upload-action">Choose audio</span></label>
+          <input id="music" type="file" accept="audio/*" hidden>
+          <div id="musicName" class="file-list"></div>
+        </div>
+        <label class="toggle-row"><span><strong>Surprise gift reveal</strong><small>Let them tap a glowing gift to open the wishes.</small></span><input id="gift" type="checkbox" checked><span class="toggle-ui"></span></label>
+        <button id="createButton" class="primary-button" type="submit"><span>✦</span> Create my birthday surprise <span class="button-arrow">↗</span></button>
+        <p class="fine-print">Your surprise is stored online so the link can be opened on another device. Anyone with the link may be able to view it, so avoid highly sensitive information.</p>
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+      </form>
+      <footer class="site-footer">Made with a little extra heart <span>♥</span></footer>
+    </section>
+
+    <section id="resultView" class="result-view hidden">
+      <div class="result-card">
+        <div class="success-icon">✓</div>
+        <div class="eyebrow">YOUR SURPRISE IS READY</div>
+        <h1>Your love, in <em>one little link.</em></h1>
+        <p>Send this link to your birthday person. Their surprise will open on their phone or computer.</p>
+        <div class="share-link"><input id="shareUrl" readonly aria-label="Share link"><button id="copyButton" type="button">Copy link</button></div>
+        <div class="result-actions"><a id="previewLink" class="primary-button" href="#" target="_blank" rel="noopener">Preview surprise ↗</a><button id="newWishButton" class="secondary-button" type="button">Create another</button></div>
+        <p class="fine-print">Tip: Send a note like “I made something for you 🎂 Open this when you have a minute.”</p>
+      </div>
+    </section>
+  </main>
+
+  <section id="recipientView" class="recipient-view hidden" aria-live="polite">
+    <div class="recipient-top"><a class="brand" href="./index.html"><span class="brand-mark">✦</span> wishlight</a><button id="musicButton" class="music-button hidden" type="button">♫ Play music</button></div>
+    <div id="recipientLoading" class="loading-card"><div class="loader"></div><p>Gathering a little birthday magic…</p></div>
+    <div id="recipientError" class="error-card hidden"><h2>We couldn't find this surprise</h2><p>The link may be incomplete, or the surprise may have been removed.</p><a class="secondary-button" href="./index.html">Create a new wish</a></div>
+    <div id="recipientContent" class="recipient-content hidden">
+      <div class="recipient-eyebrow">A LITTLE SURPRISE, MADE JUST FOR YOU</div>
+      <h1 id="recipientTitle">Happy Birthday!</h1>
+      <p id="recipientSubtitle" class="recipient-subtitle">Someone has a few words for you…</p>
+      <div id="giftStage" class="gift-stage"><button id="openGift" class="gift-button" type="button" aria-label="Open your birthday gift"><span class="gift-glow"></span><span class="gift-box"><span class="gift-lid"></span><span class="gift-ribbon"></span><span class="gift-bow">∞</span></span><span class="gift-caption">Tap to open your surprise</span></button></div>
+      <article id="wishLetter" class="wish-letter hidden">
+        <div class="letter-top">✧ A NOTE FROM THE HEART ✧</div>
+        <h2 id="letterHeading"></h2>
+        <p id="senderLine" class="sender-line"></p>
+        <div id="mainMessage" class="message-text"></div>
+        <section id="blessingsSection" class="recipient-section hidden"><h3>Wishes for your year ahead</h3><div id="blessingsText" class="message-text"></div></section>
+        <section id="memoriesSection" class="recipient-section hidden"><h3>Little moments, big memories</h3><div id="photoGallery" class="photo-gallery"></div><video id="memoryVideo" class="memory-video hidden" controls playsinline></video></section>
+        <section id="finalLetterSection" class="final-letter hidden"><div class="letter-top">ONE LAST THING…</div><div id="finalLetterText" class="message-text"></div></section>
+        <div class="letter-signoff">With love, always <span>♥</span></div>
+      </article>
+      <button id="restartGift" class="secondary-button hidden" type="button">Watch the reveal again</button>
+      <div class="recipient-footer">A Wishlight surprise <span>✦</span></div>
+    </div>
+    <audio id="backgroundMusic" loop></audio>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
