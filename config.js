@@ -5,6 +5,6 @@
   Never put a service_role/secret key in browser code.
 */
 window.WISHLIGHT_CONFIG = {
-  SUPABASE_URL: "PASTE_YOUR_SUPABASE_PROJECT_URL_HERE",
-  SUPABASE_ANON_KEY: "PASTE_YOUR_SUPABASE_ANON_KEY_HERE"
+  SUPABASE_URL: "https://bzpndaxteohomyvnqlrt.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_Id73qiaU29Fnm0eZkpwRhg_uaU2JrFV"
 };
